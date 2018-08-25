@@ -22,9 +22,9 @@ exports.showTwitter = functions.https.onRequest((request,response)=>{
   Twitter.get('search/tweets', {q: 'geocode=-74,40,10km'}, (err,data,res)=>{
     //to be done
     if (err){
-      response.send("ERROR: ", err)  
+      response.send("ERROR: ", err)
     }else{
-      response.send(res)
+      response.send(data)
     }
   })
 

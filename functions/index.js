@@ -19,7 +19,16 @@ const Twitter = new twit(config)
 admin.initializeApp(functions.config().firebase)
 
 exports.showTwitter = functions.https.onRequest((request,response)=>{
-  response.send(Twitter)
+  Twitter.get('search/tweets', {q: 'geocode=-74,40,10km'}, (err,data,res)=>{
+    //to be done
+    if (err){
+      response.send("ERROR: ", err)  
+    }else{
+      response.send(res)
+    }
+  })
+
+  //response.send(Twitter)
 })
 
 const url = 'https://www.reddit.com/r/cryptocurrency/top.json'

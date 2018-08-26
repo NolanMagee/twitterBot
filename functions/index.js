@@ -18,6 +18,10 @@ const Twitter = new twit(config)
 
 admin.initializeApp(functions.config().firebase)
 
+
+//give coordinates in the url
+//e.g. for Vancouver:
+//https://us-central1-twitterbot-77c66.cloudfunctions.net/showTwitter?lat=49.3&lng=-123
 exports.showTwitter = functions.https.onRequest((request,response)=>{
   let lat = request.query.lat || "-22.912"  //Rio de Janeiro
   let lng = request.query.lng || "-43.231" //43.231

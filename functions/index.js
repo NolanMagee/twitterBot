@@ -19,16 +19,18 @@ const Twitter = new twit(config)
 admin.initializeApp(functions.config().firebase)
 
 exports.showTwitter = functions.https.onRequest((request,response)=>{
-  Twitter.get('search/tweets', {q: 'geocode=-74,40,10km'}, (err,data,res)=>{
+  let lat = request.query.lat || "-22.912"  //Rio de Janeiro
+  let lng = request.query.lng || "-43.231" //43.231
+  let query = `geocode:${lat},${lng},25km`
+  Twitter.get('search/tweets', {q: query}, (err,data,res)=>{
     //to be done
     if (err){
       response.send("ERROR: ", err)
     }else{
-      response.send(data)
+      response.send({"lat": lat, "lng": lng, "query": query, "data": data})
     }
   })
 
-  //response.send(Twitter)
 })
 
 const url = 'https://www.reddit.com/r/cryptocurrency/top.json'

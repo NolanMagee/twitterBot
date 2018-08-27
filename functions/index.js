@@ -20,7 +20,7 @@ admin.initializeApp(functions.config().firebase)
     cors(request, response, ()=>{})
 
     let lat = request.query.lat || "-22.912"  //Rio de Janeiro
-    let lng = request.query.lng || "-43.231" //43.231
+    let lng = request.query.lng || "-43.231" 
     let query = `geocode:${lat},${lng},5km`
     Twitter.get('search/tweets', {q: query}, (err,data,res)=>{
       //to be done
